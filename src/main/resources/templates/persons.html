@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Persons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8fafc;
+            margin: 20px;
+            color: #333;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 400px;
+            margin-bottom: 30px;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: 600;
+            color: #34495e;
+        }
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            border-color: #2980b9;
+            outline: none;
+        }
+        button {
+            margin-top: 15px;
+            background-color: #2980b9;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #1c5980;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 800px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background-color: #2980b9;
+            color: white;
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: #f1f9ff;
+        }
+        a.delete-link {
+            color: #c0392b;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a.delete-link:hover {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+<h1>Person Manager</h1>
+<h2>Add Person</h2>
+<form th:action="@{/persons}" th:object="${personDto}" method="post">
+    <label>First Name:</label>
+    <input type="text" th:field="*{firstName}" required/><br/>
+    <label>Last Name:</label>
+    <input type="text" th:field="*{lastName}" required/><br/>
+    <label>Email (optional):</label>
+    <input type="email" th:field="*{email}"/><br/><br/>
+    <button type="submit">Add Person</button>
+</form>
+
+<hr/>
+
+<h2>Person list</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${persons}">
+        <td th:text="${p.firstName}">First Name</td>
+        <td th:text="${p.lastName}">Last Name</td>
+        <td th:text="${p.email}">Email</td>
+
+        <td>
+            <a th:href="@{'/persons/delete/' + ${p.id}}" onclick="return confirm('Delete person?');">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
