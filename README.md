@@ -67,3 +67,5 @@ A simple Spring Boot web application to manage persons — create, list, and del
 
 Person Manager.postman_collection.json is added in this project.
 Export the file into Postman and we can access the endpoints.
+
+Screenshot of UI : ![Person Manager UI](src/main/resources/static/Person_Manager_UI_Screenshot.png)
