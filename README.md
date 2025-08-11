@@ -38,7 +38,7 @@ A simple Spring Boot web application to manage persons — create, list, and del
 
 1. Download the zip file ,unzip it or clone from git repository
    
-   ```git clone url```
+   ```git clone https://github.com/aleena-ch/Person_Manager_SpringBoot.git```
 
 2. Build and run the application using Maven:
   ```mvn spring-boot:run```
